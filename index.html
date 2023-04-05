@@ -10,7 +10,7 @@
     <button>rock</button>
     <button>paper</button>
     <button>scissors</button>
-    <div>Test</div>
+    <div id="result-display"></div>
 
     <script>
         function getComputerChoice() {
@@ -28,7 +28,7 @@
         
         function playRound(playerSelection, computerSelection) {
             if (playerSelection === computerSelection) {
-                return "Draw! Both played " + playerSelection;
+                return "Draw! Both played " + playerSelection + ".";
             }
 
             let playerResult;
@@ -53,7 +53,7 @@
                 loser = computerSelection;
             }
 
-            return playerResult + " " + winner + " beats " + loser;
+            return playerResult + " " + winner + " beats " + loser + ".";
         }
         
 
@@ -63,8 +63,6 @@
             let playerScore = 0;
             let computerScore = 0;
             
-            const div = document.querySelector('div');
-
             let rounds = 0;
 
             const buttons = document.querySelectorAll('button');
@@ -82,35 +80,26 @@
                         computerScore++;
                     }
 
-                    console.log(roundResultStatement);
-                    
                     rounds++;
-                    // display final winner
 
+                    let div = document.getElementById('result-display');
                     if (playerScore === 5) {
-                        console.log("Player wins!");
+                        div.innerText += "Player wins!\n";
                         rounds = 0;
                         playerScore = 0;
                         computerScore = 0;
                     } else if (computerScore === 5) {
-                        console.log("Computer wins!");
+                        div.innerText += "Computer wins!\n";
                         rounds = 0;
                         playerScore = 0;
                         computerScore = 0;
+                    } else if (playerScore || computerScore < 5) {
+                        div.innerText += roundResultStatement + "\n";
                     }
                 });
             });
-    
-                
-            
-         
-         
-            
-
-         
         }
         
-       
         game();
     </script>
 </body>
